@@ -2,17 +2,17 @@
 
 # This script demonstrates how to trap signals and handle them using functions
 
-  # Task: Add traps for the INT and QUIT signals. If the script receives an INT signal,
-  #       reset the count to the maximum and tell the user they are not allowed to interrupt
-  #       the count. If the script receives a QUIT signal, tell the user they found the secret
-  #       to getting out of the script and exit immediately.
-  trap reset 2
-  trap foundsecret 3
-  # Task: Explain in a comment how the line with the word moose in it works.
-  function foundsecret {
-    echo "you found out secret to getting out of script."
-    exit
-  }
+# Task: Add traps for the INT and QUIT signals. If the script receives an INT signal,
+#       reset the count to the maximum and tell the user they are not allowed to interrupt
+#       the count. If the script receives a QUIT signal, tell the user they found the secret
+#       to getting out of the script and exit immediately.
+trap reset 2
+trap foundsecret 3
+# Task: Explain in a comment how the line with the word moose in it works.
+function foundsecret {
+  echo "you found out secret to getting out of script."
+  exit
+}
 #### Variables
 programName="$(basename $0)" # used by error_functions.sh
 sleepTime=1 # delay used by sleeptime
@@ -25,7 +25,7 @@ numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 #   error-message ["some text to print to stderr"]
 #
 function error-message {
-  #task : It prints programname and first arguments
+  #task :  It prints programname and first args
   # > redirect standard output (implicit 1)
   # $ what comes next is a file description , not a file (only for a right hand side of > )
   # 2 stderr file descriptor number
@@ -82,13 +82,12 @@ fi
 
 sleepCount=$numberOfSleeps
 function reset {
-  echo "you are not allowed to interrupt the count."
-  sleepCount=$((sleepCount - 1))
+  echo "you are not allowed to interrupt the count ."
+  sleepCount=$(($numberOfSleeps+1))
 }
-while [ $sleepcount -gt 0 ]; do
+while [ $sleepCount -gt 0 ]; do
     echo "Waiting $sleepCount more times for signals"
     sleep $sleepTime
     sleepCount=$((sleepCount - 1))
-
 done
-echo "Wait counter expired, exiting peacefully"
+echo "Wait counter expired, exiting peacefully
